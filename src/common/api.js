@@ -1,10 +1,10 @@
 // api.js
 import { httpGet, httpPost } from './http'
 export const getUser = (params = {}) => httpGet({ url: 'users/getUser', params })
-
-export const save = (data) => {
+// export const getUser = ({ params, headers = {} }) => httpGet({ url: 'users/getUser', params, headers })
+export const saveUser = (data) => {
     return httpPost({
-        url: 'users/getUser',
+        url: 'users/save',
         data
     })
 }

@@ -32,7 +32,8 @@
     </div>
 </template>
 <script>
-import { getUser } from '@/common/api'
+import { getUser, saveUser } from '@/common/api'
+// import config from '@/config/index'
 export default {
     name: 'HelloWorld',
     props: {
@@ -47,6 +48,17 @@ export default {
         getUser({ id: 200 }).then(res => {
             console.log(res)
         })
+        saveUser().then(res => {
+            console.log(res, 'res')
+        })
+        // getUser({
+        //     params: { id: 200 },
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        //     }
+        // }).then(res => {
+        //     console.log(res)
+        // })
     },
     methods: {
         handlePreview () {
