@@ -34,7 +34,7 @@ export default {
     data () {
         return {
             value1: 1
-        }
+        };
     },
     props: {
         // 分数，默认0，保留一位小数
@@ -47,10 +47,10 @@ export default {
     },
     methods: {
         test (val) {
-            this.value1 = Number(val.target.value)
+            this.value1 = Number(val.target.value);
         }
     }
-}
+};
 </script>
 <style scoped lang='scss'>
 

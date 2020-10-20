@@ -47,7 +47,7 @@ export default {
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1516 弄'
             }]
-        }
+        };
     },
     methods: {
         render2 (h, { column, $index }) {
@@ -72,22 +72,22 @@ export default {
                         innerHTML: column.label + '<span class="el-icon-question"></span>'
                     }
                 }
-            )
+            );
         },
         showSelect (i) {
-            console.log(i)
+            console.log(i);
         },
         render3 (h, { column, $index }) {
             // https://cn.vuejs.org/v2/guide/render-function.html#JSX
             // jsx react 下发教程
             // https://www.runoob.com/react/react-jsx.html
-            const cN = 'test'
+            const cN = 'test';
             // const iN = 1
             const style = {
                 height: '100%',
                 lineHeight: '0px',
                 cursor: 'pointer'
-            }
+            };
             // 等效于绑定class name 为test
             return (
                 <el-dropdown
@@ -124,25 +124,25 @@ export default {
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-            )
+            );
         },
         // https://cn.vuejs.org/v2/guide/render-function.html
         render: function (h, { column, $index }) {
-            console.log(column, $index)
+            console.log(column, $index);
             return h(
                 'el-tooltip',
                 {
                     // 组件 prop
                     props: {
                         content: (function () {
-                            const label = column.label
+                            const label = column.label;
                             switch (label) {
                             case '日期':
-                                return '网站页面上独立访问应用的人数（UV）'
+                                return '网站页面上独立访问应用的人数（UV）';
                             case '提交数':
-                                return '网站页面上访客在应用上完成提交的数量'
+                                return '网站页面上访客在应用上完成提交的数量';
                             case '成交数':
-                                return '网站页面上最终成功在应用上完成提交的数量'
+                                return '网站页面上最终成功在应用上完成提交的数量';
                             }
                         })(),
                         placement: 'top'
@@ -152,7 +152,7 @@ export default {
                     }
                 },
                 [h('span')]
-            )
+            );
         }
         // h(param1, param2, param3)里
         // param1是这个元素的标签名，
@@ -164,5 +164,5 @@ export default {
         // <el-button>内容</el-button>
         // <el-button><span>内容</span></el-button>
     }
-}
+};
 </script>

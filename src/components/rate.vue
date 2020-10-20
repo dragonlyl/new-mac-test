@@ -45,27 +45,27 @@ export default {
         return {
             curScore: '',
             widthRate: ''
-        }
+        };
     },
     created: function () {
-        this.getDecimal()
+        this.getDecimal();
     },
     methods: {
         getClass (i) {
             if (this.curScore === '') {
-                return i <= this.score ? 'icon-star' : 'icon-star-o'
+                return i <= this.score ? 'icon-star' : 'icon-star-o';
             } else {
-                return i <= this.curScore ? 'icon-star' : 'icon-star-o'
+                return i <= this.curScore ? 'icon-star' : 'icon-star-o';
             }
         },
         getDecimal () {
-            this.widthRate = Number(this.score * 100 - Math.floor(this.score) * 100) + '%'
+            this.widthRate = Number(this.score * 100 - Math.floor(this.score) * 100) + '%';
         },
         setScore (i) {
-            this.$emit('update:score', i)
+            this.$emit('update:score', i);
         }
     }
-}
+};
 </script>
 <style lang="scss" scoped>
 .rate{
