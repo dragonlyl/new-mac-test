@@ -49,6 +49,7 @@ export default {
                     if (valid) {
                         resolve('success');
                     } else {
+                        this.$refs['item-ref'].focusFirstField();
                         reject(new Error('按照提示框修改内容'));
                         return false;
                     }
