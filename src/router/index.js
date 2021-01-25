@@ -22,6 +22,11 @@ const routes = [
         path: '/video',
         name: 'UploadVideo',
         component: () => import('../views/UploadVideo.vue')
+    },
+    {
+        path: '/form',
+        name: 'Form',
+        component: () => import('../views/form.vue')
     }
 ];
 
