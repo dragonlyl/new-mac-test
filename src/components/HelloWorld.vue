@@ -1,7 +1,10 @@
 <template>
     <div class="test">
         <h2>name</h2>
+        <el-input style="width: 12px"></el-input>
         <!-- <img src="http://localhost:8089/images/1598621852938.png" > -->
+        <img src="http://localhost:8089/images/1600788083078.jpeg" >
+
         <el-upload
             class="upload-demo"
             action="http://localhost:8089/users/upload"

@@ -8,6 +8,12 @@ export const saveUser = (data) => {
         data
     });
 };
+export const sendMail = (data) => {
+    return httpPost({
+        url: 'users/sendEmail',
+        data
+    });
+};
 
 /**
  *### api.js
