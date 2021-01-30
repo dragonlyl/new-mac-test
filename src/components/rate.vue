@@ -1,6 +1,6 @@
- <template>
+<template>
     <div class="rate" :class="{'disabled':disabled}">
-       <span v-if="showText" class="text">{{curScore||score}}分</span>
+        <span v-if="showText" class="text">{{curScore||score}}分</span>
         <div class="star-wrap">
             <i
                 v-for="(i, index) in 5"
@@ -11,8 +11,10 @@
                 :class="getClass(i)"
                 :style="{width: size + 'px',height: size + 'px'}"
             >
-                <i v-if="disabled&&i==Math.floor(score)+1" class="icon-star"
-                :style="{width:widthRate,height: size + 'px'}"></i>
+                <i
+                    v-if="disabled&&i==Math.floor(score)+1"
+                    class="icon-star"
+                    :style="{width:widthRate,height: size + 'px'}"></i>
             </i>
         </div>
     </div>
@@ -54,9 +56,8 @@ export default {
         getClass (i) {
             if (this.curScore === '') {
                 return i <= this.score ? 'icon-star' : 'icon-star-o';
-            } else {
-                return i <= this.curScore ? 'icon-star' : 'icon-star-o';
             }
+            return i <= this.curScore ? 'icon-star' : 'icon-star-o';
         },
         getDecimal () {
             this.widthRate = Number(this.score * 100 - Math.floor(this.score) * 100) + '%';

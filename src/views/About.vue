@@ -2,27 +2,27 @@
     <div class="about">
         <h1>This is an about page</h1>
         <el-table
-        :data="tableData"
+            :data="tableData"
 
-        style="width: 100%">
-        <el-table-column
-            prop="date"
-            :render-header="render"
-            label="日期"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="name"
-            label="姓名"
-            :render-header="render2"
-            width="180">
-        </el-table-column>
-        <el-table-column
-            prop="address"
-            :render-header="render3"
+            style="width: 100%">
+            <el-table-column
+                prop="date"
+                :render-header="render"
+                label="日期"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="name"
+                label="姓名"
+                :render-header="render2"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="address"
+                :render-header="render3"
 
-            label="地址">
-        </el-table-column>
+                label="地址">
+            </el-table-column>
         </el-table>
     </div>
 </template>
@@ -137,12 +137,13 @@ export default {
                         content: (function () {
                             const label = column.label;
                             switch (label) {
-                            case '日期':
-                                return '网站页面上独立访问应用的人数（UV）';
-                            case '提交数':
-                                return '网站页面上访客在应用上完成提交的数量';
-                            case '成交数':
-                                return '网站页面上最终成功在应用上完成提交的数量';
+                                case '日期':
+                                    return '网站页面上独立访问应用的人数（UV）';
+                                case '提交数':
+                                    return '网站页面上访客在应用上完成提交的数量';
+                                case '成交数':
+                                    return '网站页面上最终成功在应用上完成提交的数量';
+                                default: return 'ff';
                             }
                         })(),
                         placement: 'top'

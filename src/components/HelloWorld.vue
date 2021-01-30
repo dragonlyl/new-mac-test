@@ -76,13 +76,13 @@ export default {
     },
     methods: {
         handlePreview () {
-
+            // handlePreview
         },
         handleRemove () {
-
+            // handleRemove
         },
         beforeRemove () {
-
+            // beforeRemove
         },
         handleExceed () {
             console.log('over');
@@ -90,8 +90,8 @@ export default {
         handleSuccess (res, file, fileList) {
             console.log(res, file.name, file.name.includes('.mp4'));
             if (res && res.url) {
-                const list = fileList.map(file => file.response);
-                if (/\.mp4$/i.test(file.name)) {
+                const list = fileList.map(f => f.response);
+                if ((/\.mp4$/i).test(file.name)) {
                     this.$nextTick(() => {
                         this.setVideo(file, fileList);
                     });
