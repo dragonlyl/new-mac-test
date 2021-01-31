@@ -3,14 +3,16 @@
         vue-model组件实现 https://www.jianshu.com/p/e908cc6719c8
         <input type="text" v-model="value1">
         <!--语法糖 编译后的写法-->
-        <input type="text"
+        <input
+            type="text"
             :value="value1"
             @input="value1 = $event.target.value"
         >
         <input type="text" :value="value1" @input="test">
         <!-- input-component触发input事件 -->
         <!-- 子节点内容 -->
-        <input type="text"
+        <input
+            type="text"
             :value="value"
             @input="$emit('input', $event.target.value);"
         >
