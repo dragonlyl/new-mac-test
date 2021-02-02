@@ -11,11 +11,19 @@ module.exports = {
 //     // webpack配置
 //     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
 //     chainWebpack: () => {},
-//     configureWebpack: () => {},
-//     // vue-loader 配置项
-//     // https://vue-loader.vuejs.org/en/options.html
-//     vueLoader: {},
-//     // 生产环境是否生成 sourceMap 文件
+    publicPath: './',
+    configureWebpack: (config) => {
+        // 取消console打印
+        config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        // 如果是多环境打包
+        // if (process.env.NODE_ENV === 'production') {
+    // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+        // }
+    },
+    //     // vue-loader 配置项
+    //     // https://vue-loader.vuejs.org/en/options.html
+    //     vueLoader: {},
+    //     // 生产环境是否生成 sourceMap 文件
     productionSourceMap: true,
     //     // css相关配置
     //     css: {
