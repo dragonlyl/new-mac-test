@@ -38,5 +38,14 @@ const routes = [
 const router = new VueRouter({
     routes
 });
-
+router.beforeEach((to, from, next) => {
+    window.sessionStorage.setItem('name', 111);
+    // location.href = 'localhost:8089/#/form';
+    const { path } = to;
+    if (path === '/home') {
+        next({ path: 'form' });
+    } else {
+        next();
+    }
+});
 export default router;
