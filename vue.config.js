@@ -17,8 +17,16 @@ module.exports = {
         config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
         // 如果是多环境打包
         // if (process.env.NODE_ENV === 'production') {
-    // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+            // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
         // }
+        config.resolve = {
+            extensions: ['.js', '.vue', '.json', '.css'],
+            alias: {
+                '@': '/Users/dralinz/Desktop/new-mac-test/src',
+                'vue$': 'vue/dist/vue.runtime.esm.js',
+                'src': require('path').resolve(__dirname, 'src')
+            }
+        }
     },
     //     // vue-loader 配置项
     //     // https://vue-loader.vuejs.org/en/options.html
