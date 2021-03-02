@@ -14,7 +14,9 @@ module.exports = {
     publicPath: './',
     configureWebpack: (config) => {
         // 取消console打印
-        config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        if (process.env.NODE_ENV === 'production') {
+            config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        }
         // 如果是多环境打包
         // if (process.env.NODE_ENV === 'production') {
             // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
