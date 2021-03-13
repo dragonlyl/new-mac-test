@@ -1,24 +1,28 @@
 module.exports = {
 //     // 基本路径
-//     baseUrl: '/',
-//     // 输出文件目录
-//     outputDir: 'dist',
-//     // eslint-loader 是否在保存的时候检查
-//     lintOnSave: true,
-//     // use the full build with in-browser compiler?
-//     // https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
-//     compiler: false,
-//     // webpack配置
-//     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
-//     chainWebpack: () => {},
+    // baseUrl: '/',
+    //     // 输出文件目录
+    //     outputDir: 'dist',
+    //     // eslint-loader 是否在保存的时候检查
+    //     lintOnSave: true,
+    //     // use the full build with in-browser compiler?
+    //     // https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
+    //     compiler: false,
+    //     // webpack配置
+    //     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
+    //     chainWebpack: () => {},
     publicPath: './',
     configureWebpack: (config) => {
         // 取消console打印
-        config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
         // 如果是多环境打包
-        // if (process.env.NODE_ENV === 'production') {
-    // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
-        // }
+        if (process.env.NODE_ENV === 'production') {
+            // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        }
+        config.devtool = process.env.NODE_ENV === 'development' ? 'source-map' : 'cheap-module-source-map';
+        // config.externals = {
+        //     jquery: 'jQuery'
+        // };
     },
     //     // vue-loader 配置项
     //     // https://vue-loader.vuejs.org/en/options.html
