@@ -32,6 +32,11 @@ const routes = [
         path: '/slider',
         name: 'Slider',
         component: () => import(/* webpackChunkName: "Slider" */ '../views/Slider.vue')
+    },
+    {
+        path: '/directive',
+        name: 'Directive',
+        component: () => import(/* webpackChunkName: "Slider" */ '../views/directive.vue')
     }
 ];
 
