@@ -37,6 +37,35 @@ const routes = [
         path: '/directive',
         name: 'Directive',
         component: () => import(/* webpackChunkName: "Slider" */ '../views/directive.vue')
+    },
+    // {
+    //     path: '/components',
+    //     name: 'Components',
+    //     component: () => import('../views/MyCom.vue')
+    // },
+    {
+        path: '/download',
+        name: 'Download',
+        component: () => import('../views/Download.vue')
+    }, {
+        path: '/directive1',
+        name: 'Directive1',
+        component: () => import('../views/directive1.vue')
+    },
+    {
+        path: '/chen',
+        name: 'Chen',
+        component: () => import('../views/Chen.vue')
+    },
+    {
+        path: '/rrweb',
+        name: 'Rrweb',
+        component: () => import('../views/rrweb.vue')
+    },
+    {
+        path: '/rrweb-err',
+        name: 'RrwebRrr',
+        component: () => import('../views/errorRecord.vue')
     }
 ];
 

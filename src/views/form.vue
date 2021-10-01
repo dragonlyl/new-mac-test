@@ -16,7 +16,11 @@
             </div>
         </div>
         <div class="upload">
+            {{tets11}}
             <el-button @click="upload">提交</el-button>
+        </div>
+        <div class="upload">
+            <el-button @click="upload1">提交1</el-button>
         </div>
     </div>
 </template>
@@ -39,28 +43,38 @@ export default {
     // mounted () {},
     methods: {
         changeCheck (obj) {
+            obj.a.b = 2;
+            // b = 2;
             obj.check = !obj.check;
         },
         async upload () {
-            const promiseList = [];
-            this.list.forEach(val => {
-                if (val.check) {
-                    const list = this.$refs[val.name + 't'];
-                    if (list && list.length) {
-                        const cur = list[0];
-                        promiseList.push(cur.upload());
-                    }
-                }
+            return new Promise((resolve, reject) => {
+                reject(new Error('error'));
             });
-            try {
-                const val = await Promise.all(promiseList);
-                if (val) {
-                    console.log(val);
-                }
-            } catch (error) {
-                this.$message.info(error.message);
-            }
-            console.log('结束代码');
+            // const promiseList = [];
+            // this.list.forEach(val => {
+            //     if (val.check) {
+            //         const list = this.$refs[val.name + 't'];
+            //         if (list && list.length) {
+            //             const cur = list[0];
+            //             promiseList.push(cur.upload());
+            //         }
+            //     }
+            // });
+            // try {
+            //     const val = await Promise.all(promiseList);
+            //     if (val) {
+            //         console.log(val);
+            //     }
+            // } catch (error) {
+            //     this.$message.info(error.message);
+            // }
+            // console.log('结束代码');
+        },
+        async upload1 () {
+            return new Promise((resolve, reject) => {
+                reject(new Error('error'));
+            });
         }
     }
 };

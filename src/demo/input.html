@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="1" placeholder="id #1">
+    <input type="text" id="2" placeholder="id #2">
+    <script>
+        var events = ['input', 'change'];
+        // 事件名, 事件处理 (查找dom源)
+        var handlers = events.map(function (eventName) { return on(eventName, eventHandler, document); });
+        var propertyDescriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+        var hookProperties = [
+            [HTMLInputElement.prototype, 'value'],
+            [HTMLInputElement.prototype, 'checked'],
+            [HTMLSelectElement.prototype, 'value'],
+            [HTMLTextAreaElement.prototype, 'value'],
+            [HTMLSelectElement.prototype, 'selectedIndex'],
+        ];
+        if (propertyDescriptor && propertyDescriptor.set) {
+            handlers.push.apply(handlers, __spread(hookProperties.map(function (p) {
+                // 劫持 prototype  set方法
+                return hookSetter(p[0], p[1], {
+                    set: function () {
+                        eventHandler({ target: this });
+                    },
+                });
+            })));
+        }
+        // 绑定事件
+        function on(type, fn, target) {
+            if (target === void 0) { target = document; }
+            var options = { capture: true, passive: true };
+            target.addEventListener(type, fn, options);
+            return function () { return target.removeEventListener(type, fn, options); };
+        }
+        
+        function eventHandler(event) {
+            var target = getEventTarget(event);
+            console.log(target, '===')
+        }
+
+        function getEventTarget(event) {
+            try {
+                if ('composedPath' in event) {
+                    var path = event.composedPath();
+                    if (path.length) {
+                        return path[0];
+                    }
+                }
+                else if ('path' in event && event.path.length) {
+                    return event.path[0];
+                }
+                return event.target;
+            }
+            catch (_a) {
+                return event.target;
+            }
+        }
+        function hookSetter(target, key, d, isRevoked, win) {
+            if (win === void 0) { win = window; }
+            var original = win.Object.getOwnPropertyDescriptor(target, key);
+            win.Object.defineProperty(target, key, isRevoked
+                ? d
+                : {
+                    set: function (value) {
+                        var _this = this;
+                        setTimeout(function () {
+                            d.set.call(_this, value);
+                        }, 0);
+                        if (original && original.set) {
+                            original.set.call(this, value);
+                        }
+                    },
+                });
+            return function () { return hookSetter(target, key, original || {}, true); };
+        }
+        function __spread() {
+            for (var ar = [], i = 0; i < arguments.length; i++)
+                ar = ar.concat(__read(arguments[i]));
+            return ar;
+        }
+        function __read(o, n) {
+            var m = typeof Symbol === "function" && o[Symbol.iterator];
+            if (!m) return o;
+            var i = m.call(o), r, ar = [], e;
+            try {
+                while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            }
+            catch (error) { e = { error: error }; }
+            finally {
+                try {
+                    if (r && !r.done && (m = i["return"])) m.call(i);
+                }
+                finally { if (e) throw e.error; }
+            }
+            return ar;
+        }
+
+    </script>
+</body>
+</html>

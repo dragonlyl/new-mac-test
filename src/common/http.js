@@ -107,47 +107,90 @@ service.interceptors.response.use(
             } else {
                 response.data.msg = msg;
             }
+            const error = new Error(msg);
+            error.data = response.data;
+            // throw error;
+            return Promise.reject(response);
         }
-        return response;
+        // return response;
+        return Promise.resolve(response);
     },
     error => {
-        console.log(error, 'err');
+        console.log(error, '===err');
         // 错误抛到业务代码
         error.data = {};
         error.data.msg = '请求超时或服务器异常，请检查网络或联系管理员！';
-        return Promise.resolve(error);
+        // return Promise.resolve(error);
+        return Promise.reject(error);
     }
 );
 
 // get 请求
-export function httpGet ({ url, params = {}, headers = {} }) {
-    return service
-        .get(url, {
-            params,
-            headers
-        })
-        .then(res => {
-            return res && res.data;
+// export function httpGet ({ url, params = {}, headers = {} }) {
+//     return service
+//         .get(url, {
+//             params,
+//             headers
+//         })
+//         .then(res => {
+//             return res && res.data;
+//         });
+// }
+export function httpGet (url, params) {
+    return new Promise((resolve, reject) => {
+        service.get(url, {
+            params: params
+        }).then(res => {
+            resolve(res && res.data);
+        }).catch(err => {
+            reject(err.data);
         });
+    });
 }
 
 // post请求
-export function httpPost ({ url, data = {}, params = {} }) {
-    return service({
-        url,
-        method: 'post',
-        // transformRequest: [function (data) {
-        //     let ret = '';
-        //     for (const it in data) {
-        //         ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
-        //     }
-        //     return ret;
-        // }],
-        // 发送的数据
-        data,
-        // url参数
-        params
-    }).then(res => {
-        return res && res.data;
+// export function httpPost ({ url, data = {}, params = {} }) {
+//     return service({
+//         url,
+//         method: 'post',
+//         // transformRequest: [function (data) {
+//         //     let ret = '';
+//         //     for (const it in data) {
+//         //         ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+//         //     }
+//         //     return ret;
+//         // }],
+//         // 发送的数据
+//         data,
+//         // url参数
+//         params
+//     }).then(res => {
+//         return res && res.data;
+//     });
+// }
+
+export function httpPost (url, data = {}, params) {
+    return new Promise((resolve, reject) => {
+        service({
+            url,
+            method: 'post',
+            // transformRequest: [function (data) {
+            //     let ret = '';
+            //     for (const it in data) {
+            //         ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&';
+            //     }
+            //     return ret;
+            // }],
+            // 发送的数据
+            data,
+            // url参数
+            params
+        })
+            .then(res => {
+                resolve(res.data);
+            })
+            .catch(err => {
+                reject(err.data);
+            });
     });
 }

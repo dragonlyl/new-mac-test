@@ -1,3 +1,4 @@
+const SourceMapUploader = require('./source-map-upload');
 module.exports = {
 //     // 基本路径
     // baseUrl: '/',
@@ -11,11 +12,15 @@ module.exports = {
     //     // webpack配置
     //     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     //     chainWebpack: () => {},
+    // devtool: 'eval-source-map',
     publicPath: './',
     configureWebpack: (config) => {
         // 取消console打印
         if (process.env.NODE_ENV === 'production') {
-            config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+        //     config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true;
+            // config.devtool = 'source-map';
+        } else {
+            // config.devtool = 'source-map';
         }
         // 如果是多环境打包
         // if (process.env.NODE_ENV === 'production') {
@@ -29,12 +34,14 @@ module.exports = {
                 src: require('path').resolve(__dirname, 'src')
             }
         };
+        // config.plugins.push(new SourceMapUploader({ url: 'http://localhost:3000/test/upload' }));
     },
     //     // vue-loader 配置项
     //     // https://vue-loader.vuejs.org/en/options.html
     //     vueLoader: {},
     //     // 生产环境是否生成 sourceMap 文件
     productionSourceMap: true,
+    // productionSourceMap: false,
     //     // css相关配置
     //     css: {
     //      // 是否使用css分离插件 ExtractTextPlugin

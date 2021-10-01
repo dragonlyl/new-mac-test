@@ -1,7 +1,9 @@
 import myButton from './Button/button.vue';
+import mySelector from './Selector/index.vue';
 const MyPlugin = {};
 const aCompList = [
-    myButton
+    myButton,
+    mySelector
 ];
 MyPlugin.install = function (Vue, options) {
     console.log(options);
@@ -10,7 +12,6 @@ MyPlugin.install = function (Vue, options) {
         components.forEach(com => {
             aCompList.forEach(inner => {
                 if (inner.name === com) {
-                    console.log(inner);
                     Vue.component(inner.name, inner);
                 }
             });

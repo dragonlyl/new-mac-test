@@ -1,11 +1,13 @@
 <template>
-    <div class="test-wrapper" style="height: 400px" >
+    <div class="test-wrapper" style="height: 400px">
         <!-- <div class="test" v-demo:call.test='message'> -->
         <button>jack</button>
         <button>lucc</button>
         {{test}}
         <my-test :list='list'></my-test>
         <!-- </div> -->
+        <div class="test" v-demo:call.test='message'></div>
+        <div style="border: 1px solid red" @click="click">点击</div>
     </div>
 </template>
 
@@ -17,7 +19,7 @@ export default {
     components: { myTest },
     data () {
         return {
-            message: 'call',
+            message: 'messageValue',
             test: true,
             list: [
                 'jack',
@@ -31,6 +33,9 @@ export default {
             if (this.test) this.test = false;
             // this.$emit('on-clickoutside');
             // console.log(e, 'eee');
+        },
+        click () {
+            console.log(2222);
         }
     },
     directives: {
@@ -39,7 +44,7 @@ export default {
                 var s = JSON.stringify;
 
                 el.innerHTML = '指令名:' + s(bind.name) + '<br>'
-                 + '值:' + s(bind.value) + '<br>'
+                 + '表达式的值:' + s(bind.value) + '<br>'
                  + '表达式:' + s(bind.expression) + '<br>'
                  + '传个指令的参数arg' + s(bind.arg) + '<br>'
                  + '修饰符对象参数:' + s(bind.modifiers) + '<br>'

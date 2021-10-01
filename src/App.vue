@@ -3,6 +3,18 @@
         <router-view/>
     </div>
 </template>
+<script>
+import store from '@/store';
+
+export default {
+    methods: {
+
+    },
+    created () {
+        store.dispatch('setMenuList');
+    }
+};
+</script>
 
 <style lang="scss">
 #app {
