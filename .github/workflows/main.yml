@@ -20,4 +20,4 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.test }}
         BRANCH: gh-pages
-        FOLDER: build
+        FOLDER: dist
