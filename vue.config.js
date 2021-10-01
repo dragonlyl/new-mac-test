@@ -1,4 +1,8 @@
 const SourceMapUploader = require('./source-map-upload');
+const path = require('path');
+function resolve (dir) {
+    return path.join(__dirname, dir);
+}
 module.exports = {
 //     // 基本路径
     // baseUrl: '/',
@@ -29,7 +33,7 @@ module.exports = {
         config.resolve = {
             extensions: ['.js', '.vue', '.json', '.css'],
             alias: {
-                '@': '/Users/dralinz/Desktop/new-mac-test/src',
+                '@': resolve('src'),
                 vue$: 'vue/dist/vue.runtime.esm.js',
                 src: require('path').resolve(__dirname, 'src')
             }
