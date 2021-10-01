@@ -23,11 +23,11 @@ const routes = [
         name: 'UploadVideo',
         component: () => import('../views/UploadVideo.vue')
     },
-    {
-        path: '/form',
-        name: 'Form',
-        component: () => import('../views/Form.vue')
-    },
+    // {
+    //     path: '/form',
+    //     name: 'Form',
+    //     component: () => import('../views/Form.vue')
+    // },
     {
         path: '/slider',
         name: 'Slider',
